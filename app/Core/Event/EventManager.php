@@ -44,6 +44,7 @@ class EventManager
     public function getAll()
     {
         $events = array(
+            TaskLinkModel::EVENT_DELETE => t('Task link deletion'),
             TaskLinkModel::EVENT_CREATE_UPDATE => t('Task link creation or modification'),
             TaskModel::EVENT_MOVE_COLUMN       => t('Move a task to another column'),
             TaskModel::EVENT_UPDATE            => t('Task modification'),
