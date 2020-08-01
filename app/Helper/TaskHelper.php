@@ -190,6 +190,32 @@ class TaskHelper extends Base
         return $html;
     }
 
+    public function renderTaskLinkFields(array $values, array $errors = array(), array $attributes = array())
+    {
+        $html = $this->helper->form->hidden('opposite_task_id');
+        $labels = $this->linkModel->getList();
+
+        $html .= $this->helper->form->label(t('Label'), 'link_id');
+        $html .= $this->helper->form->select('link_id', $labels, $labels, $errors, array('tabindex="16"'));
+
+        $html .= $this->helper->form->label(t('Task'), 'title');
+        $html .= $this->helper->form->text(
+            'title',
+            $labels,
+            $errors,
+            array(
+                'required',
+                'tabindex="17"',
+                'placeholder="'.t('Start to type task title...').'"',
+                'title="'.t('Start to type task title...').'"',
+                'data-dst-field="opposite_task_id"',
+                'data-search-url="'.$this->helper->url->href('TaskAjaxController', 'autocomplete', array()).'"',
+            ),
+            'autocomplete');
+
+        return $html;
+    }
+
     public function renderReferenceField(array $values, array $errors = array(), array $attributes = array())
     {
         $attributes = array_merge(array('tabindex="15"'), $attributes);

@@ -98,5 +98,14 @@
         </div>
     </fieldset>
 
+    <fieldset class="bulk-change-block">
+        <div class="bulk-change-checkbox">
+            <input type="checkbox" name="change_task_links" value="1">
+        </div>
+        <div class="bulk-change-inputs">
+            <?= $this->task->renderTaskLinkFields($values, $errors) ?>
+        </div>
+    </fieldset>
+
     <?= $this->modal->submitButtons() ?>
 </form>

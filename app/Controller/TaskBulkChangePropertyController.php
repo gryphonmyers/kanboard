@@ -72,6 +72,14 @@ class TaskBulkChangePropertyController extends BaseController
                 $changes['score'] = $values['score'];
             }
 
+            if (isset($values['change_score']) && $values['change_score'] == 1) {
+                $changes['score'] = $values['score'];
+            }
+
+            if (isset($values['change_task_links']) && $values['change_task_links'] == 1) {
+                $this->taskLinkModel->create($taskID, $values['opposite_task_id'], $values['link_id']);
+            }
+
             if (! empty($changes)) {
                 $changes['id'] = $taskID;
                 $this->taskModificationModel->update($changes);
